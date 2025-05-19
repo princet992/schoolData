@@ -20,7 +20,7 @@ const SchoolCard = ({ school }) => {
   };
 
   return (
-    <Card sx={{ backgroundColor: 'whitesmoke', minHeight: 385,maxWidth:345 }}>
+    <Card sx={{ backgroundColor: 'whitesmoke', minHeight: 385, maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt={school.name}
@@ -37,6 +37,7 @@ const SchoolCard = ({ school }) => {
       </CardContent>
       <CardActions>
         <Button
+          sx={{ fontSize: '10px', fontWeight: 'bold' }}
           size="small"
           variant="contained"
           onClick={() => handleRequest(school)}
@@ -44,6 +45,7 @@ const SchoolCard = ({ school }) => {
           View Request
         </Button>
         <Button
+          sx={{ fontSize: '10px', fontWeight: 'bold' }}
           size="small"
           variant="contained"
           onClick={() => handleStudents(school)}

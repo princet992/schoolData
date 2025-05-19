@@ -29,7 +29,7 @@ const StudentForm = () => {
       <form
         action=""
         onSubmit={handleSubmit(formSubmit)}
-        className="w-[400px] p-3 rounded-lg bg-[#d6c2d6]"
+        className="w-[400px] p-3 rounded-lg bg-[#E6EBF1]"
       >
         <h2 className="text-center text-xl font-semibold">Add School</h2>
         <div className="my-2 grid">
@@ -39,7 +39,7 @@ const StudentForm = () => {
             {...register("name", {
               required: "Please enter school name",
             })}
-            className="px-3 py-2 rounded-lg bg-[#e7dde7] outline-0 my-2"
+            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
           />
           {errors.name && <p>{errors.name.message}</p>}
         </div>
@@ -50,7 +50,7 @@ const StudentForm = () => {
             {...register("address", {
               required: "Please enter school address",
             })}
-            className="px-3 py-2 rounded-lg bg-[#e7dde7] outline-0 my-2"
+            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
           />
           {errors.address && <p>{errors.address.message}</p>}
         </div>
@@ -61,7 +61,7 @@ const StudentForm = () => {
             {...register("class", {
               required: "Please enter class name",
             })}
-            className="px-3 py-2 rounded-lg bg-[#e7dde7] outline-0 my-2"
+            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
           />
           {errors.class && <p>{errors.class.message}</p>}
         </div>
@@ -72,14 +72,14 @@ const StudentForm = () => {
             {...register("phone", {
               required: "Please enter phone number",
             })}
-            className="px-3 py-2 rounded-lg bg-[#e7dde7] outline-0 my-2"
+            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
           />
           {errors.phone && <p>{errors.phone.message}</p>}
         </div>
         <div className="my-2 grid">
           <label className="text-sm font-semibold">Select School</label>
           <select
-            className="px-3 py-2 rounded-lg bg-[#e7dde7] outline-0 my-2"
+            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
             {...register("school", {
               required: "Please enter school name",
             })}

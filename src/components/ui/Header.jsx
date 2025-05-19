@@ -61,22 +61,22 @@ const Header = () => {
             Home
           </Button>
         </NavLink>
-        {/* <NavLink to="/home">
+        <NavLink to="/home">
           <Button
             color="inherit"
             sx={{ display: { xs: "none", sm: "inline" } }}
           >
             Schools
           </Button>
-        </NavLink> */}
-        {/* <NavLink to="/studentForm">
+        </NavLink>
+        <NavLink to="/studentForm">
           <Button
             color="inherit"
             sx={{ display: { xs: "none", sm: "inline" } }}
           >
             Add Students
           </Button>
-        </NavLink> */}
+        </NavLink>
       </Toolbar>
     </AppBar>
   );

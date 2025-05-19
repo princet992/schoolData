@@ -50,7 +50,7 @@ const Login = () => {
                 <form
                     action=""
                     onSubmit={handleSubmit(formSubmit)}
-                    className="max-w-[400px] p-3 rounded-lg bg-[#d6c2d6]"
+                    className="max-w-[400px] p-3 rounded-lg bg-[#E6EBF1]"
                 >
                     <h2 className="text-center text-xl font-semibold">Login Form</h2>
                     <div className="my-2 grid">
@@ -60,7 +60,7 @@ const Login = () => {
                             {...register("email", {
                                 required: "Please enter email address",
                             })}
-                            className="px-3 py-2 rounded-lg bg-[#e7dde7] outline-0 my-2"
+                            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
                         />
                         {errors.email && <p>{errors.email.message}</p>}
                     </div>
@@ -71,7 +71,7 @@ const Login = () => {
                             {...register("password", {
                                 required: "Please enter password",
                             })}
-                            className="px-3 py-2 rounded-lg bg-[#e7dde7] outline-0 my-2"
+                            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
                         />
                         {errors.password && <p>{errors.password.message}</p>}
                     </div>
