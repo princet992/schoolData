@@ -14,12 +14,13 @@ const SchoolCard = ({ school }) => {
   const handleRequest = (school) => {
     navigate("/request", { state: school });
   };
+
   const handleStudents = (school) => {
     navigate("/schoolData", { state: school });
   };
 
   return (
-    <Card sx={{ backgroundColor:'whitesmoke' ,minHeight: 385}}>
+    <Card sx={{ backgroundColor: 'whitesmoke', minHeight: 385,maxWidth:345 }}>
       <CardMedia
         component="img"
         alt={school.name}

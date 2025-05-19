@@ -1,39 +1,32 @@
 import React from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Button,
-} from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+
 import { addStudent } from "../../features/schoolSlice/schoolSlice";
 
 const SchoolData = () => {
+
   const dispatch = useDispatch();
   const { studentData } = useSelector((state) => state.school);
   const location = useLocation();
   const data = location.state;
 
   const acceptedStudent = studentData.filter(
-    (student) => student.school === data.name && student.request === "success"
+    (student) => student.school === data?.name && student.request === "success"
   );
+
   const handleDel = (student) => {
-    const newData = {
-      ...student,
-      request: "pending",
-    };
+    const newData = { ...student, request: "pending" };
     dispatch(addStudent(newData));
   };
   // console.log(acceptedStudent)
   // console.log(studentData)
   return (
     <div>
-      {data && <h2 className="text-center my-4 font-semibold">{data.name} - Student-Data</h2>}
+
+      {data && <h2 className="text-center my-4 font-semibold underline underline-offset-2">{data.name} - Student-Data</h2>}
+
       {acceptedStudent.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650, maxWidth: 1000, margin: 'auto', borderRadius: '15px' }} aria-label="simple table">

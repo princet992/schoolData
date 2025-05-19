@@ -7,7 +7,7 @@ const Home = () => {
   //   console.log(schoolData);
   return (
     <>
-      <div className="grid grid-cols-3 justify-between items-center gap-5 p-10 flex-wrap">
+      <div className="flex justify-between items-center gap-5 p-10 flex-wrap">
         {schoolData?.map((school) => (
           <SchoolCard school={school} key={school.id} />
         ))}

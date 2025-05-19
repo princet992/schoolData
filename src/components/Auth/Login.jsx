@@ -32,21 +32,21 @@ const Login = () => {
     };
     return (
         <>
-            
-            <div
-             className="grid place-items-center h-[calc(100vh-56px)]"
-             >
 
-            <Snackbar
-                open={alert}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                anchorOrigin={{ vertical: "top", horizontal: "center",}}
+            <div
+                className="grid place-items-center h-[calc(100vh-56px)]"
             >
-                <Alert variant="filled" severity='error' onClick={handleClose}>
-                    Invalid email password
-                </Alert>
-            </Snackbar>
+
+                <Snackbar
+                    open={alert}
+                    autoHideDuration={1500}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: "top", horizontal: "center", }}
+                >
+                    <Alert variant="filled" severity='error' onClick={handleClose}>
+                        Invalid email password
+                    </Alert>
+                </Snackbar>
                 <form
                     action=""
                     onSubmit={handleSubmit(formSubmit)}

@@ -1,19 +1,9 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardActions,
-  Typography,
-  Button,
-  Alert,
-  Snackbar,
-} from "@mui/material";
+import { Card, CardContent, CardActions, Typography, Button, Alert, Snackbar, } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import {
-  addStudent,
-  removeStudent,
-} from "../../features/schoolSlice/schoolSlice";
+
+import { addStudent, removeStudent } from "../../features/schoolSlice/schoolSlice";
 
 const Request = () => {
 
@@ -23,26 +13,15 @@ const Request = () => {
   const data = location.state;
 
   const studentRequest = studentData?.filter(
-    (student) => student.school === data.name && student.request === "pending"
+    (student) => student.school === data?.name && student.request === "pending"
   );
-  // console.log(studentData);
-  const [alert, setalert] = useState({
-    isOpen: false,
-    message: "",
-    severity: "",
-  });
+
+  const [alert, setalert] = useState({ isOpen: false, message: "", severity: "", });
 
   const handleAccept = (student) => {
-    const newData = {
-      ...student,
-      request: "success",
-    };
+    const newData = { ...student, request: "success" };
     dispatch(addStudent(newData));
-    setalert({
-      isOpen: true,
-      message: "request accepted successfully",
-      severity: "success",
-    });
+    setalert({ isOpen: true, message: "request accepted successfully", severity: "success" });
   };
 
   const handleClose = () => {
@@ -52,10 +31,11 @@ const Request = () => {
   const handleReject = (Id) => {
     dispatch(removeStudent(Id));
     setalert({ isOpen: true, message: "request rejected", severity: "error" });
-  };
+  }
+
   return (
     <div className="text-center my-3">
-        {data && <h2 className="text-center my-4 font-semibold">{data.name} - Student-Data</h2>}
+      {data && <h2 className="text-center my-4 font-semibold underline underline-offset-2">{data.name} - Student-Data</h2>}
       <Snackbar
         open={alert.isOpen}
         autoHideDuration={2000}
@@ -72,8 +52,9 @@ const Request = () => {
           <Card
             sx={{
               maxWidth: 800,
-              margin: "auto",
+              margin: "10px auto",
               display: "flex",
+              flexWrap: 'wrap',
               justifyContent: "space-between",
               alignItems: "center",
               backgroundColor: "whitesmoke",
@@ -81,7 +62,7 @@ const Request = () => {
             key={student.id}
           >
             <CardContent>
-              <Typography variant="subtitle1">
+              <Typography variant="inherit">
                 Request from <span>{student.name}</span>
               </Typography>
               <Typography variant="overline" color="text.secondary">

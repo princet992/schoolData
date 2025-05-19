@@ -69,14 +69,14 @@ const Header = () => {
             Schools
           </Button>
         </NavLink> */}
-        <NavLink to="/studentForm">
+        {/* <NavLink to="/studentForm">
           <Button
             color="inherit"
             sx={{ display: { xs: "none", sm: "inline" } }}
           >
             Add Students
           </Button>
-        </NavLink>
+        </NavLink> */}
       </Toolbar>
     </AppBar>
   );

@@ -16,12 +16,15 @@ function App() {
       <Routes>
         <Route path="/" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/schools" element={<Home />} /> */}
-        <Route path='/home' element={<ProtectedRoute />} />
+
+        <Route element={<ProtectedRoute />} >
+          <Route path='/home' element={<Home />} />
+        </Route>
+        
         <Route path="/schoolForm" element={<SchoolForm />} />
+        <Route path="/studentForm" element={<StudentForm />} />
         <Route path="/schoolData" element={<SchoolData />} />
         <Route path="/request" element={<Request />} />
-        <Route path="/studentForm" element={<StudentForm />} />
       </Routes>
     </>
   );
