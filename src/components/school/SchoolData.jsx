@@ -29,32 +29,35 @@ const SchoolData = () => {
     };
     dispatch(addStudent(newData));
   };
+  // console.log(acceptedStudent)
+  // console.log(studentData)
   return (
     <div>
+      {data && <h2 className="text-center my-4 font-semibold">{data.name} - Student-Data</h2>}
       {acceptedStudent.length > 0 ? (
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow className="font-bold">
-                <TableCell>Sr.No.</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>School</TableCell>
-                <TableCell>Phone</TableCell>
-                <TableCell>Class</TableCell>
-                <TableCell>Address</TableCell>
-                <TableCell>Actions</TableCell>
+          <Table sx={{ minWidth: 650, maxWidth: 1000, margin: 'auto', borderRadius: '15px' }} aria-label="simple table">
+            <TableHead >
+              <TableRow sx={{ font: 700, }}>
+                <TableCell sx={{ fontWeight: 'bold', border: '1px solid black', }}>Sr.No.</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', border: '1px solid black' }}>Name</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', border: '1px solid black' }}>School</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', border: '1px solid black' }}>Phone</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', border: '1px solid black' }}>Class</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', border: '1px solid black' }}>Address</TableCell>
+                <TableCell sx={{ fontWeight: 'bold', border: '1px solid black' }}>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {studentData.map((student, index) => (
+              {acceptedStudent.map((student, index) => (
                 <TableRow key={student.id}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{student.name}</TableCell>
-                  <TableCell>{student.school}</TableCell>
-                  <TableCell>{student.phone}</TableCell>
-                  <TableCell>{student.class}</TableCell>
-                  <TableCell>{student.address}</TableCell>
-                  <TableCell>
+                  <TableCell sx={{ border: '1px solid black' }}>{index + 1}</TableCell>
+                  <TableCell sx={{ border: '1px solid black' }}>{student.name}</TableCell>
+                  <TableCell sx={{ border: '1px solid black' }}>{student.school}</TableCell>
+                  <TableCell sx={{ border: '1px solid black' }}>{student.phone}</TableCell>
+                  <TableCell sx={{ border: '1px solid black' }}>{student.class}</TableCell>
+                  <TableCell sx={{ border: '1px solid black' }}>{student.address}</TableCell>
+                  <TableCell sx={{ border: '1px solid black' }}>
                     <Button
                       variant="contained"
                       size="small"

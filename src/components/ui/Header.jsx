@@ -61,6 +61,14 @@ const Header = () => {
             Home
           </Button>
         </NavLink>
+        {/* <NavLink to="/home">
+          <Button
+            color="inherit"
+            sx={{ display: { xs: "none", sm: "inline" } }}
+          >
+            Schools
+          </Button>
+        </NavLink> */}
         <NavLink to="/studentForm">
           <Button
             color="inherit"

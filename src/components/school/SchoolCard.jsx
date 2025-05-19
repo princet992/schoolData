@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
 const SchoolCard = ({ school }) => {
+
   const navigate = useNavigate();
 
   const handleRequest = (school) => {
@@ -16,8 +17,9 @@ const SchoolCard = ({ school }) => {
   const handleStudents = (school) => {
     navigate("/schoolData", { state: school });
   };
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ backgroundColor:'whitesmoke' ,minHeight: 385}}>
       <CardMedia
         component="img"
         alt={school.name}
@@ -25,7 +27,7 @@ const SchoolCard = ({ school }) => {
         image={school.photo}
       />
       <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography gutterBottom variant="subtitle1" component="div">
           {school.name}
         </Typography>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>

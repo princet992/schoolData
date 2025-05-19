@@ -14,15 +14,18 @@ import {
   addStudent,
   removeStudent,
 } from "../../features/schoolSlice/schoolSlice";
+
 const Request = () => {
+
   const dispatch = useDispatch();
   const { studentData } = useSelector((state) => state.school);
   const location = useLocation();
   const data = location.state;
+
   const studentRequest = studentData?.filter(
     (student) => student.school === data.name && student.request === "pending"
   );
-  console.log(studentData);
+  // console.log(studentData);
   const [alert, setalert] = useState({
     isOpen: false,
     message: "",
@@ -41,15 +44,18 @@ const Request = () => {
       severity: "success",
     });
   };
+
   const handleClose = () => {
     setalert({ ...alert, isOpen: false });
   };
+
   const handleReject = (Id) => {
     dispatch(removeStudent(Id));
     setalert({ isOpen: true, message: "request rejected", severity: "error" });
   };
   return (
     <div className="text-center my-3">
+        {data && <h2 className="text-center my-4 font-semibold">{data.name} - Student-Data</h2>}
       <Snackbar
         open={alert.isOpen}
         autoHideDuration={2000}
