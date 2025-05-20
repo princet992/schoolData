@@ -1,17 +1,20 @@
 import { nanoid } from "@reduxjs/toolkit";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addStudent } from "../../features/schoolSlice/schoolSlice";
+import { Alert, Snackbar } from "@mui/material";
 
 const StudentForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { schoolData } = useSelector((state) => state.school);
+  const [alert, setalert] = useState(false)
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -22,10 +25,26 @@ const StudentForm = () => {
       request: "pending",
     };
     dispatch(addStudent(newData));
-    navigate("/home");
+    // navigate("/home");
+    setalert(true)
+    reset()
   };
+
+  const handleClose = () =>{
+     setalert(false)
+  }
   return (
     <div className="grid place-items-center h-[calc(100vh-64px)]">
+       <Snackbar
+              open={alert}
+              autoHideDuration={2000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "top", horizontal: "center", margin: " 30px 0px" }}
+            >
+              <Alert variant="filled" severity='success' onClick={handleClose}>
+                Student added successfully
+              </Alert>
+            </Snackbar>
       <form
         action=""
         onSubmit={handleSubmit(formSubmit)}

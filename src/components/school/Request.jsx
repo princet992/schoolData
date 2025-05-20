@@ -40,7 +40,7 @@ const Request = () => {
         open={alert.isOpen}
         autoHideDuration={2000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "center", margin: "20px" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center", margin: " 30px 0px" }}
       >
         <Alert variant="filled" severity={alert.severity} onClick={handleClose}>
           {alert.message}

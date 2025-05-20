@@ -9,6 +9,7 @@ import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ErrorPage from "./pages/ErrorPage";
+import AdminRoute from "./components/Auth/AdminRoute";
 
 function App() {
   return (
@@ -18,18 +19,15 @@ function App() {
         <Route path="/" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
 
-        <Route path='/home' element={
-          <ProtectedRoute >
-            <Home />
-          </ProtectedRoute>} >
+        <Route element={<ProtectedRoute />}>
+          <Route path="/studentForm" element={<StudentForm />} />
         </Route>
-
-        {/* <Route path="/studentForm" element={<StudentForm />} /> */}
-
-
-        <Route path="/schoolForm" element={<SchoolForm />} />
-        <Route path="/schoolData" element={<SchoolData />} />
-        <Route path="/request" element={<Request />} />
+        <Route  element={<AdminRoute />} >
+          <Route path="/home" element={<Home />} />
+          <Route path="/schoolForm" element={<SchoolForm />} />
+          <Route path="/schoolData" element={<SchoolData />} />
+          <Route path="/request" element={<Request />} />
+        </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

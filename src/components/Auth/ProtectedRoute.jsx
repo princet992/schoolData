@@ -1,34 +1,31 @@
 import { Button } from '@mui/material'
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
+import { logOut } from '../../features/AuthSlice/AuthSlice'
 
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
 
-    const { users } = useSelector(state => state.Auth)
+    const dispatch = useDispatch()
+    const { isAuthenticate, userLogin } = useSelector(state => state.Auth)
     const navigate = useNavigate('')
-    const location = useLocation()
-    const data = location.state;
-    const userData = users?.find(user => (
-        user.email === data?.email && user.password === data?.password
-    ))
+
+    const handleLogOut = () => {
+        dispatch(logOut())
+        navigate('/login')
+    }
 
     return (
         <div>
-            {userData &&
+            {
+                isAuthenticate &&
                 <div className='flex justify-between items-center flex-wrap'>
-                    <h2 className='m-3'>Welcome , <span className='font-semibold'>{userData?.name}</span></h2>
-                    <Button sx={{ fontSize: '10px', fontWeight: 'bold' }} variant='outlined' size='small' onClick={() => navigate('/studentForm')}>Add Student</Button>
+                    <h2 className='m-3'>Welcome , <span className='font-semibold'>{userLogin?.name}</span></h2>
+                    <Button sx={{ fontSize: '10px', fontWeight: 'bold' }} variant='outlined' size='small' onClick={handleLogOut}>LogOut</Button>
                 </div>
             }
-            {userData ?
-                // <Outlet />
-                children
-                :
-                // <Login/>
-                <Navigate to='/login' />
-            }
+            {isAuthenticate ? <Outlet /> : <Navigate to='/login' />}
         </div>
     )
 }

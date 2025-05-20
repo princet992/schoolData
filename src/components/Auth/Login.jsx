@@ -1,12 +1,15 @@
 import { Alert, Snackbar } from '@mui/material';
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { login } from '../../features/AuthSlice/AuthSlice';
 
 const Login = () => {
+
+    const dispatch = useDispatch()
+    const { isAdmin } = useSelector(state => state.Auth)
     const navigate = useNavigate();
-    const { users } = useSelector(state => state.Auth)
     const [alert, setalert] = useState(false);
 
     const {
@@ -20,23 +23,20 @@ const Login = () => {
     }
 
     const formSubmit = (data) => {
-        const savedUser = users.find(user => (
-            user.email === data.email && user.password === data.password
-        ))
+        const savedUser = dispatch(login(data))
         if (savedUser) {
-            navigate('/home', { state: data })
-        } else {
+            navigate('/studentForm')
+        }
+        else if (isAdmin) {
+            navigate('/home')
+        }
+        else {
             setalert(true)
-            // navigate('/')
         }
     };
     return (
         <>
-
-            <div
-                className="grid place-items-center h-[calc(100vh-56px)]"
-            >
-
+            <div className="grid place-items-center h-[calc(100vh-56px)]" >
                 <Snackbar
                     open={alert}
                     autoHideDuration={1500}
@@ -47,8 +47,8 @@ const Login = () => {
                         Invalid email password
                     </Alert>
                 </Snackbar>
+
                 <form
-                    action=""
                     onSubmit={handleSubmit(formSubmit)}
                     className="max-w-[400px] p-3 rounded-lg bg-[#E6EBF1]"
                 >

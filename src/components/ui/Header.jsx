@@ -10,7 +10,9 @@ import {
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const { isAdmin } = useSelector(state => state.Auth)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -48,9 +50,15 @@ const Header = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Home</MenuItem>
-          <MenuItem onClick={handleClose}>Students</MenuItem>
-          <MenuItem onClick={handleClose}>Requests</MenuItem>
+          <NavLink to="/">
+            <MenuItem onClick={handleClose}>Home</MenuItem>
+          </NavLink>
+          {/* <NavLink to="/home">
+            <MenuItem onClick={handleClose}>Students</MenuItem>
+          </NavLink>
+          <NavLink to="/studentForm">
+            <MenuItem onClick={handleClose}>Requests</MenuItem>
+          </NavLink> */}
         </Menu>
 
         <NavLink to="/">
@@ -61,22 +69,19 @@ const Header = () => {
             Home
           </Button>
         </NavLink>
-        <NavLink to="/home">
-          <Button
-            color="inherit"
-            sx={{ display: { xs: "none", sm: "inline" } }}
-          >
-            Schools
-          </Button>
-        </NavLink>
-        <NavLink to="/studentForm">
-          <Button
-            color="inherit"
-            sx={{ display: { xs: "none", sm: "inline" } }}
-          >
-            Add Students
-          </Button>
-        </NavLink>
+        {isAdmin &&
+          <>
+            <NavLink to="/home">
+              <Button
+                color="inherit"
+                sx={{ display: { xs: "none", sm: "inline" } }}
+              >
+                Schools
+              </Button>
+            </NavLink>
+          </>
+        }
+
       </Toolbar>
     </AppBar>
   );
