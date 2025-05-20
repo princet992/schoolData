@@ -22,7 +22,6 @@ const AuthSlice = createSlice({
             const user = state.users.find(u => (
                 u.email === action.payload.email && u.password === action.payload.password && u.role !== 'admin'
             ))
-            console.log(user)
             const admin = state.users.find(user => user.role === 'admin')
             if (user) {
                 state.userLogin = user;
@@ -30,8 +29,7 @@ const AuthSlice = createSlice({
             }
             else if (admin) {
                 state.isAdmin = true;
-                state.userLogin = null;
-                state.isAuthenticate = false;
+                state.userLogin = admin;
             } else {
                 alert('invalid user')
             }
@@ -39,10 +37,13 @@ const AuthSlice = createSlice({
         logOut: (state) => {
             state.userLogin = null,
                 state.isAuthenticate = false
+        },
+        adminLogOut: (state) => {
+            state.isAdmin = false
         }
     }
 })
 
-export const { addUser, login, logOut } = AuthSlice.actions;
+export const { addUser, login, logOut,adminLogOut } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

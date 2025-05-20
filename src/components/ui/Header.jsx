@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <AppBar
       position="sticky"
-      sx={{ backgroundColor: "whitesmoke", color: "#000" }}
+      sx={{ backgroundColor: "whitesmoke", color: "#000",paddingInline:'40px' }}
     >
       <Toolbar>
         <IconButton
@@ -61,15 +61,8 @@ const Header = () => {
           </NavLink> */}
         </Menu>
 
-        <NavLink to="/">
-          <Button
-            color="inherit"
-            sx={{ display: { xs: "none", sm: "inline" } }}
-          >
-            Home
-          </Button>
-        </NavLink>
-        {isAdmin &&
+       
+        {isAdmin ?
           <>
             <NavLink to="/home">
               <Button
@@ -79,7 +72,25 @@ const Header = () => {
                 Schools
               </Button>
             </NavLink>
-          </>
+          </>:
+          <>
+           <NavLink to="/">
+           <Button
+             color="inherit"
+             sx={{ display: { xs: "none", sm: "inline" } }}
+           >
+             Home
+           </Button>
+         </NavLink>
+           {/* <NavLink to="/studentForm">
+           <Button
+             color="inherit"
+             sx={{ display: { xs: "none", sm: "inline" } }}
+           >
+             Application From
+           </Button>
+         </NavLink> */}
+         </>
         }
 
       </Toolbar>

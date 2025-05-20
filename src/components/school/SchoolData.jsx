@@ -54,9 +54,10 @@ const SchoolData = () => {
                     <Button
                       variant="contained"
                       size="small"
+                      sx={{fontSize:'10px'}}
                       onClick={() => handleDel(student)}
                     >
-                      Delete
+                     Remove 
                     </Button>
                   </TableCell>
                 </TableRow>

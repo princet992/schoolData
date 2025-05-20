@@ -20,12 +20,12 @@ const ProtectedRoute = () => {
         <div>
             {
                 isAuthenticate &&
-                <div className='flex justify-between items-center flex-wrap'>
+                <div className='flex  justify-end items-center flex-wrap'>
                     <h2 className='m-3'>Welcome , <span className='font-semibold'>{userLogin?.name}</span></h2>
                     <Button sx={{ fontSize: '10px', fontWeight: 'bold' }} variant='outlined' size='small' onClick={handleLogOut}>LogOut</Button>
                 </div>
             }
-            {isAuthenticate ? <Outlet /> : <Navigate to='/login' />}
+            {isAuthenticate ? <Outlet /> : <Navigate to='/' />}
         </div>
     )
 }

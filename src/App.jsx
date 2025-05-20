@@ -10,19 +10,21 @@ import SignUp from "./components/Auth/SignUp";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ErrorPage from "./pages/ErrorPage";
 import AdminRoute from "./components/Auth/AdminRoute";
+import FormSuccess from "./pages/FormSuccess";
 
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/studentForm" element={<StudentForm />} />
+          <Route path="/formSuccess" element={<FormSuccess />} />
         </Route>
-        <Route  element={<AdminRoute />} >
+        <Route element={<AdminRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/schoolForm" element={<SchoolForm />} />
           <Route path="/schoolData" element={<SchoolData />} />
