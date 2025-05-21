@@ -1,5 +1,5 @@
 import { Alert, Snackbar } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +7,8 @@ import { login } from "../../features/AuthSlice/AuthSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { isAdmin } = useSelector((state) => state.Auth);
   const navigate = useNavigate();
+  const { userLogin, isAuthenticate } = useSelector((state) => state.Auth);
   const [alert, setalert] = useState(false);
 
   const {
@@ -22,15 +22,19 @@ const Login = () => {
   };
 
   const formSubmit = (data) => {
-    const savedUser = dispatch(login(data));
-    if (isAdmin) {
-      navigate("/home");
-    } else if (savedUser) {
-      navigate("/studentForm");
-    } else {
-      setalert(true);
-    }
+    dispatch(login(data));
   };
+
+  useEffect(() => {
+    if (isAuthenticate) {
+      if (userLogin.role === "admin") {
+        navigate("/home");
+      } else {
+        navigate("/studentForm");
+      }
+    }
+  },[isAuthenticate,userLogin]);
+
   return (
     <>
       <div className="grid place-items-center h-[calc(100vh-56px)]">

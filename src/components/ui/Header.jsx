@@ -12,7 +12,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector } from "react-redux";
 const Header = () => {
-  const { isAdmin } = useSelector(state => state.Auth)
+  const { isAuthenticate, userLogin } = useSelector((state) => state.Auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <AppBar
       position="sticky"
-      sx={{ backgroundColor: "whitesmoke", color: "#000",paddingInline:'40px' }}
+      sx={{ backgroundColor: "whitesmoke", color: "#000" }}
     >
       <Toolbar>
         <IconButton
@@ -50,49 +50,52 @@ const Header = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <NavLink to="/">
-            <MenuItem onClick={handleClose}>Home</MenuItem>
-          </NavLink>
-          {/* <NavLink to="/home">
-            <MenuItem onClick={handleClose}>Students</MenuItem>
-          </NavLink>
-          <NavLink to="/studentForm">
-            <MenuItem onClick={handleClose}>Requests</MenuItem>
-          </NavLink> */}
+          {isAuthenticate && userLogin.role === "admin" ? (
+            <div>
+              {/* <NavLink to="/">
+                <MenuItem onClick={handleClose}>Home</MenuItem>
+              </NavLink> */}
+              <NavLink to="/home">
+                <MenuItem onClick={handleClose}>Schools List</MenuItem>
+              </NavLink>
+              <NavLink to="/schoolForm">
+                <MenuItem onClick={handleClose}>Add School</MenuItem>
+              </NavLink>
+            </div>
+          ) : null}
         </Menu>
 
-       
-        {isAdmin ?
+        {isAuthenticate && userLogin.role === "admin" ? (
           <>
             <NavLink to="/home">
               <Button
                 color="inherit"
                 sx={{ display: { xs: "none", sm: "inline" } }}
               >
-                Schools
+                Schools List
               </Button>
             </NavLink>
-          </>:
+            <NavLink to="/schoolForm">
+              <Button
+                color="inherit"
+                sx={{ display: { xs: "none", sm: "inline" } }}
+              >
+                Add School
+              </Button>
+            </NavLink>
+          </>
+        ) : (
           <>
-           <NavLink to="/">
+            {/* <NavLink to="/">
            <Button
              color="inherit"
              sx={{ display: { xs: "none", sm: "inline" } }}
            >
              Home
            </Button>
-         </NavLink>
-           {/* <NavLink to="/studentForm">
-           <Button
-             color="inherit"
-             sx={{ display: { xs: "none", sm: "inline" } }}
-           >
-             Application From
-           </Button>
          </NavLink> */}
-         </>
-        }
-
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

@@ -9,27 +9,34 @@ import Login from "./components/Auth/Login";
 import SignUp from "./components/Auth/SignUp";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ErrorPage from "./pages/ErrorPage";
-import AdminRoute from "./components/Auth/AdminRoute";
 import FormSuccess from "./pages/FormSuccess";
+import UserAccess from "./components/ui/UserAccess";
+import NavBar from "./components/ui/NavBar";
+import Profile from "./pages/UserProfile";
 
 function App() {
   return (
     <>
-      <Header />
+      <NavBar />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/userAccess" element={<UserAccess />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/studentForm" element={<StudentForm />} />
           <Route path="/formSuccess" element={<FormSuccess />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
-        <Route element={<AdminRoute />}>
+
+        <Route element={<ProtectedRoute role={["admin"]} />}>
           <Route path="/home" element={<Home />} />
           <Route path="/schoolForm" element={<SchoolForm />} />
           <Route path="/schoolData" element={<SchoolData />} />
           <Route path="/request" element={<Request />} />
         </Route>
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
