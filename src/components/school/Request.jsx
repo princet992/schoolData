@@ -16,8 +16,10 @@ import {
   removeStudent,
 } from "../../features/schoolSlice/schoolSlice";
 
+
 const Request = () => {
   const dispatch = useDispatch();
+  const { theme } = useSelector((state) => state.Themes);
   const { studentData } = useSelector((state) => state.school);
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,10 +56,14 @@ const Request = () => {
 
   return (
     <>
-      <div className="text-center my-3">
+      <div
+        className={`text-center px-2 py-3 min-h-screen ${
+          theme === "dark" && "bg-[#191a19] text-white"
+        }`}
+      >
         {data ? (
           <>
-            <h2 className="text-center my-4 font-semibold underline underline-offset-2">
+            <h2 className="text-center py-4 font-semibold underline underline-offset-2">
               {data.name} - Student-Data
             </h2>
 
@@ -88,9 +94,10 @@ const Request = () => {
                     margin: "10px auto",
                     display: "flex",
                     flexWrap: "wrap",
-                    justifyContent: "space-between",
+                    justifyContent: { xs: "center", lg: "space-between" },
                     alignItems: "center",
-                    backgroundColor: "whitesmoke",
+                    backgroundColor: theme === "light" ? "whitesmoke" : "gray",
+                    color: theme === "dark" && "white",
                   }}
                   key={student.id}
                 >
@@ -98,7 +105,10 @@ const Request = () => {
                     <Typography variant="inherit">
                       Request from <span>{student.name}</span>
                     </Typography>
-                    <Typography variant="overline" color="text.secondary">
+                    <Typography
+                      variant="overline"
+                      color={`${theme === "dark" && "white"}`}
+                    >
                       {student.name} has requested to join your organization.
                     </Typography>
                   </CardContent>
@@ -140,7 +150,16 @@ const Request = () => {
             to view request
           </p>
         )}
+         <Button
+                variant="contained"
+                color='success'
+                sx={{ fontSize: "10px" }}
+                onClick={() => navigate("/home", { replace: true })}
+              >
+                Go Back
+              </Button>
       </div>
+      
     </>
   );
 };

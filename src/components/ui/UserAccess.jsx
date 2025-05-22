@@ -1,20 +1,35 @@
-import React, { useEffect, useState } from "react";
+import { Button } from "@mui/material";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Navigate, replace, useNavigate } from "react-router-dom";
 
 const UserAccess = () => {
-  // const [isLoading, setisLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setisLoading(false);
-  //   }, 3000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  const { theme } = useSelector((state) => state.Themes);
+  const navigate = useNavigate();
 
   return (
-    <div className="grid place-items-center h-[calc(100vh-62px)]">
-      {/* <h2 className="my-5 font-semibold">Access Denied</h2> */}
-      <img src="error.gif" alt="access-denied" className="w-[80vw] mx-auto rounded-xl" />
-    </div>
+    <>
+      <div
+        className={`grid place-items-center min-h-[calc(100vh-62px)] ${
+          theme === "dark" && "bg-[#191a19]"
+        }`}
+      >
+        <img
+          src="error.gif"
+          alt="access-denied"
+          className="w-[80vw] mx-auto rounded-xl"
+        />
+
+        <Button
+          variant="contained"
+          color='success'
+          sx={{ fontSize: "10px" }}
+          onClick={() => navigate("/studentForm", { replace: true })}
+        >
+          Go Back
+        </Button>
+      </div>
+    </>
   );
 };
 

@@ -4,10 +4,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../features/AuthSlice/AuthSlice";
+import PersonIcon from '@mui/icons-material/Person';
+
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { theme } = useSelector((state) => state.Themes);
   const { userLogin, isAuthenticate } = useSelector((state) => state.Auth);
   const [alert, setalert] = useState(false);
 
@@ -33,11 +36,15 @@ const Login = () => {
         navigate("/studentForm");
       }
     }
-  },[isAuthenticate,userLogin]);
+  }, [isAuthenticate, userLogin]);
 
   return (
     <>
-      <div className="grid place-items-center h-[calc(100vh-56px)]">
+      <div
+        className={`grid place-items-center h-[calc(100vh-56px)] p-1 ${
+          theme === "dark" && "bg-[#191a19]"
+        }`}
+      >
         <Snackbar
           open={alert}
           autoHideDuration={1500}
@@ -51,18 +58,25 @@ const Login = () => {
 
         <form
           onSubmit={handleSubmit(formSubmit)}
-          className="max-w-[400px] p-3 rounded-lg bg-[#E6EBF1]"
+          className={`max-w-[400px] p-3 rounded-lg  ${
+            theme === "dark" ? "bg-[#000] text-white" : "bg-[#E6EBF1]"
+          }`}
         >
           <h2 className="text-center text-xl font-semibold">Login Form</h2>
           <div className="my-2 grid">
             <label className="text-sm font-semibold">Email</label>
-            <input
+           <span className="flex items-center gap-2">
+            {/* <PersonIcon /> */}
+           <input
               type="text"
               {...register("email", {
                 required: "Please enter email address",
               })}
-              className="px-3 py-2 rounded-lg bg-[#fff] outline-[#a6dda6] my-2"
+              className={`px-3 py-2 rounded-lg ${
+                theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
+              } my-2  outline-[#a6dda6] w-full`}
             />
+           </span>
             {errors.email && <p>{errors.email.message}</p>}
           </div>
           <div className="my-2 grid">
@@ -72,11 +86,17 @@ const Login = () => {
               {...register("password", {
                 required: "Please enter password",
               })}
-              className="px-3 py-2 rounded-lg bg-[#fff] outline-[#a6dda6] my-2"
+              className={`px-3 py-2 rounded-lg ${
+                theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
+              } my-2  outline-[#a6dda6] w-full`}
             />
             {errors.password && <p>{errors.password.message}</p>}
           </div>
-          <button className="px-3 py-2 rounded-lg w-full bg-[#31d511] text-white">
+          <button
+            className={`px-3 py-2 rounded-lg w-full  text-white ${
+              theme === "light" ? "bg-[#2db611]" : "bg-[#134718]"
+            }`}
+          >
             Login
           </button>
           <p className="text-sm my-2">

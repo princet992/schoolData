@@ -52,9 +52,6 @@ const Header = () => {
         >
           {isAuthenticate && userLogin.role === "admin" ? (
             <div>
-              {/* <NavLink to="/">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </NavLink> */}
               <NavLink to="/home">
                 <MenuItem onClick={handleClose}>Schools List</MenuItem>
               </NavLink>

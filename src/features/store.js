@@ -1,7 +1,8 @@
 import { persistStore, persistReducer, PERSIST } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import SchoolReducer from "./schoolSlice/schoolSlice";
-import AuthReducer from './AuthSlice/AuthSlice';
+import AuthReducer from "./AuthSlice/AuthSlice";
+import ThemeReducer from "./ThemeSlice/ThemeSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 const persistConfig = {
@@ -11,7 +12,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   school: SchoolReducer,
-  Auth:AuthReducer,
+  Auth: AuthReducer,
+  Themes: ThemeReducer,
 });
 
 const persisitedReducer = persistReducer(persistConfig, rootReducer);

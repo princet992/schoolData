@@ -6,7 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import ContrastIcon from "@mui/icons-material/Contrast";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
@@ -14,10 +15,14 @@ import MenuItem from "@mui/material/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logOut } from "../../features/AuthSlice/AuthSlice";
+import { Container } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { toggleTheme } from "../../features/ThemeSlice/ThemeSlice";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const { isAuthenticate, userLogin } = useSelector((state) => state.Auth);
+  const { theme } = useSelector((state) => state.Themes);
 
   const settings = ["Profile", "Logout"];
 
@@ -33,33 +38,40 @@ const NavBar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-   
   };
 
   const handleCloseUserMenu = (setting) => {
     setAnchorElUser(null);
     if (setting === "Logout") {
-       dispatch(logOut());
+      dispatch(logOut());
     }
   };
+
+  const handleThemes = () =>{
+    dispatch(toggleTheme())
+  }
 
   return (
     <>
       <AppBar
-        position="sticky" 
-        sx={{ backgroundColor: "whitesmoke", color: "#000" ,top:0,paddingInline:'20px'}}
+        position="sticky"
+        sx={{
+          backgroundColor: theme === "light" ? "#fff" : "#414141",
+          color: theme === "light" ? "#414141" : "#fff",
+          top: 0,
+          paddingInline: { xs: "", md: "20px" },
+        }}
       >
-        {/* <Container maxWidth="xl"> */}
+        <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
               variant="h6"
               noWrap
               component="a"
-              // href="#app-bar-with-responsive-menu"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "fantasy",
+                fontFamily: "sans-serif",
                 fontWeight: 700,
                 color: "inherit",
                 textDecoration: "none",
@@ -93,7 +105,9 @@ const NavBar = () => {
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
-                sx={{ display: { xs: "block", md: "none" } }}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
               >
                 {isAuthenticate && userLogin.role === "admin" ? (
                   <div>
@@ -108,7 +122,13 @@ const NavBar = () => {
                       </MenuItem>
                     </NavLink>
                   </div>
-                ) : null}
+                ) :
+                <NavLink to="/">
+                <MenuItem onClick={handleCloseNavMenu}>
+                 Home
+                </MenuItem>
+              </NavLink>
+                 }
               </Menu>
             </Box>
             <Typography
@@ -128,13 +148,25 @@ const NavBar = () => {
             >
               My School App
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: {
+                  xs: "none",
+                  md: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                },
+              }}
+            >
               {isAuthenticate && userLogin.role === "admin" ? (
                 <>
                   <NavLink to="/home">
                     <Button
                       color="inherit"
-                      sx={{ display: { xs: "none", sm: "inline" } }}
+                      sx={{
+                        display: { xs: "none", sm: "inline", fontWeight: 600 },
+                      }}
                     >
                       Schools List
                     </Button>
@@ -142,61 +174,91 @@ const NavBar = () => {
                   <NavLink to="/schoolForm">
                     <Button
                       color="inherit"
-                      sx={{ display: { xs: "none", sm: "inline" } }}
+                      sx={{
+                        display: { xs: "none", sm: "inline", fontWeight: 600 },
+                      }}
                     >
                       Add School
                     </Button>
                   </NavLink>
                 </>
               ) : (
-                <></>
+                <>
+                  <NavLink to="/studentForm">
+                    <Button
+                      color="inherit"
+                      sx={{ display: { xs: "none", sm: "inline" } }}
+                    >
+                      Student Form
+                    </Button>
+                  </NavLink>
+                </>
               )}
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={()=>handleCloseUserMenu(setting)}>
-                    {setting === "Logout" ? (
-                      <Typography sx={{ textAlign: "center" }}>
-                        Logout
-                      </Typography>
-                    )
-                    :
+           {
+            isAuthenticate &&
+            <Box sx={{ flexGrow: 0, marginInlineStart: "5px" }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                <AccountCircle
+                  sx={{
+                    outline: "1px solid green",
+                    borderRadius: "100%",
+                    backgroundColor: theme === "light" ? "#fff" : "#000",
+                    color: theme === "light" ? "#000" : "#fff",
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => handleCloseUserMenu(setting)}
+                >
+                  {setting === "Logout" ? (
+                    <Typography sx={{ textAlign: "center" }}>
+                      Logout
+                    </Typography>
+                  ) : (
                     <NavLink to={`/${setting}`}>
                       <Typography sx={{ textAlign: "center" }}>
                         {setting}
                       </Typography>
                     </NavLink>
-                  
-                  }
-
-
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+                  )}
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+           }
+            <Button
+              onClick={handleThemes}
+              className={`ms-3 ${
+                theme === "light" ? "text-[#000]" : "text-[#fff]"
+              }`}
+              title={`${theme} theme`}
+            >
+              {theme === "light" ? <ContrastIcon /> : <DarkModeIcon />}
+            </Button>
           </Toolbar>
-        {/* </Container> */}
+        </Container>
       </AppBar>
     </>
   );

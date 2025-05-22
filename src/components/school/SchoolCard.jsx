@@ -6,9 +6,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import { CardActionArea } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const SchoolCard = ({ school }) => {
-
+  const { theme } = useSelector((state) => state.Themes);
   const navigate = useNavigate();
 
   const handleRequest = (school) => {
@@ -20,24 +22,27 @@ const SchoolCard = ({ school }) => {
   };
 
   return (
-    <Card sx={{ backgroundColor: 'whitesmoke', minHeight: 385, maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt={school.name}
-        height="140"
-        image={school.photo}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="subtitle1" component="div">
-          {school.name}
-        </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {school.address}
-        </Typography>
-      </CardContent>
+    <Card sx={{ backgroundColor: "whitesmoke", maxWidth: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt={school.name}
+          // height="140"
+          image={school.photo}
+          sx={{}}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="subtitle1" component="h2">
+            {school.name}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            {school.address}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
       <CardActions>
         <Button
-          sx={{ fontSize: '10px', fontWeight: 'bold' }}
+          sx={{ fontSize: "10px", fontWeight: "bold" }}
           size="small"
           variant="contained"
           onClick={() => handleRequest(school)}
@@ -45,7 +50,7 @@ const SchoolCard = ({ school }) => {
           View Request
         </Button>
         <Button
-          sx={{ fontSize: '10px', fontWeight: 'bold' }}
+          sx={{ fontSize: "10px", fontWeight: "bold" }}
           size="small"
           variant="contained"
           onClick={() => handleStudents(school)}

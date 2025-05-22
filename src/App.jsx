@@ -17,17 +17,17 @@ import Profile from "./pages/UserProfile";
 function App() {
   return (
     <>
-      <NavBar />
       {/* <Header /> */}
+      <NavBar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/userAccess" element={<UserAccess />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/studentForm" element={<StudentForm />} />
           <Route path="/formSuccess" element={<FormSuccess />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/userAccess" element={<UserAccess />} />
         </Route>
 
         <Route element={<ProtectedRoute role={["admin"]} />}>
