@@ -13,6 +13,7 @@ import FormSuccess from "./pages/FormSuccess";
 import UserAccess from "./components/ui/UserAccess";
 import NavBar from "./components/ui/NavBar";
 import Profile from "./pages/UserProfile";
+import SchoolDataCard from "./components/school/SchoolDataCard";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+       
 
         <Route element={<ProtectedRoute />}>
           <Route path="/studentForm" element={<StudentForm />} />

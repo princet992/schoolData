@@ -22,14 +22,21 @@ const SchoolCard = ({ school }) => {
   };
 
   return (
-    <Card sx={{ backgroundColor: "whitesmoke", maxWidth: 345 }}>
+    <Card
+      sx={{
+        backgroundColor: "whitesmoke",
+        width: 320,
+        maxWidth: 345,
+        minHeight: 350,
+      }}
+    >
       <CardActionArea>
         <CardMedia
           component="img"
           alt={school.name}
           // height="140"
           image={school.photo}
-          sx={{}}
+          sx={{ maxHeight: 140, objectFit: "cover", width: "100%" }}
         />
         <CardContent>
           <Typography gutterBottom variant="subtitle1" component="h2">
