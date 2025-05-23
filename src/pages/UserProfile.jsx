@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux";
 
-
 const Profile = () => {
-  const { isAuthenticate, userLogin } = useSelector((state) => state.Auth);
+  const { userLogin } = useSelector((state) => state.Auth);
   const { theme } = useSelector((state) => state.Themes);
   return (
     <>
       <div
-        className={`min-h-screen p-2 sm:p-5 ${
+        className={`min-h-screen p-2 sm:p-5  ${
           theme === "dark" && "bg-[#191a19] text-[#fff]"
         }`}
       >

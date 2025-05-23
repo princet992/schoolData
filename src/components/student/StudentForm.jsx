@@ -27,7 +27,7 @@ const StudentForm = () => {
     };
     dispatch(addStudent(newData));
     reset();
-    navigate("/formSuccess", { replace: true });
+    navigate("/formSuccess", {state:newData, replace: true });
   };
 
   return (

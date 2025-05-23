@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../features/AuthSlice/AuthSlice";
-import PersonIcon from '@mui/icons-material/Person';
-
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -65,9 +63,7 @@ const Login = () => {
           <h2 className="text-center text-xl font-semibold">Login Form</h2>
           <div className="my-2 grid">
             <label className="text-sm font-semibold">Email</label>
-           <span className="flex items-center gap-2">
-            {/* <PersonIcon /> */}
-           <input
+            <input
               type="text"
               {...register("email", {
                 required: "Please enter email address",
@@ -76,7 +72,6 @@ const Login = () => {
                 theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
               } my-2  outline-[#a6dda6] w-full`}
             />
-           </span>
             {errors.email && <p>{errors.email.message}</p>}
           </div>
           <div className="my-2 grid">

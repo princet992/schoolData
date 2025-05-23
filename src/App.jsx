@@ -1,29 +1,28 @@
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/ui/Header";
-import SchoolForm from "./components/school/SchoolForm";
-import StudentForm from "./components/student/StudentForm";
-import Home from "./pages/Home";
-import Request from "./components/school/Request";
-import SchoolData from "./components/school/SchoolData";
-import Login from "./components/Auth/Login";
-import SignUp from "./components/Auth/SignUp";
-import ProtectedRoute from "./components/Auth/ProtectedRoute";
-import ErrorPage from "./pages/ErrorPage";
-import FormSuccess from "./pages/FormSuccess";
-import UserAccess from "./components/ui/UserAccess";
+import { lazy } from "react";
+
 import NavBar from "./components/ui/NavBar";
-import Profile from "./pages/UserProfile";
-import SchoolDataCard from "./components/school/SchoolDataCard";
+import Login from "./components/Auth/Login";
+
+const Home = lazy(() => import("./pages/Home"));
+const Profile = lazy(() => import("./pages/UserProfile"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+const SignUp = lazy(() => import("./components/Auth/SignUp"));
+const FormSuccess = lazy(() => import("./pages/FormSuccess"));
+const Request = lazy(() => import("./components/school/Request"));
+const UserAccess = lazy(() => import("./components/ui/UserAccess"));
+const SchoolData = lazy(() => import("./components/school/SchoolData"));
+const SchoolForm = lazy(() => import("./components/school/SchoolForm"));
+const StudentForm = lazy(() => import("./components/student/StudentForm"));
+const ProtectedRoute = lazy(() => import("./components/Auth/ProtectedRoute"));
 
 function App() {
   return (
     <>
-      {/* <Header /> */}
       <NavBar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-       
 
         <Route element={<ProtectedRoute />}>
           <Route path="/studentForm" element={<StudentForm />} />

@@ -18,9 +18,9 @@ const SchoolSlice = createSlice({
       }
     },
     removeSchool: (state, action) => {
-      state.schoolData = state.schoolData.filter(school => (
-        school.id !== action.payload.id
-      ))
+      state.schoolData = state.schoolData.filter(
+        (school) => school.id !== action.payload.id
+      );
     },
     addStudent: (state, action) => {
       const existingStudent = state.studentData.find(
@@ -36,9 +36,14 @@ const SchoolSlice = createSlice({
         state.studentData.push(action.payload);
       }
     },
-    removeStudent: (state, action) => { },
+    removeStudent: (state, action) => {
+      state.studentData = state.studentData.filter(
+        (student) => student.id !== action.payload
+      );
+    },
   },
 });
 
-export const { addSchools, addStudent, removeStudent,removeSchool} = SchoolSlice.actions;
+export const { addSchools, addStudent, removeStudent, removeSchool } =
+  SchoolSlice.actions;
 export default SchoolSlice.reducer;

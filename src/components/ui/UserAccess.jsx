@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate, replace, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const UserAccess = () => {
   const { theme } = useSelector((state) => state.Themes);
@@ -22,7 +22,7 @@ const UserAccess = () => {
 
         <Button
           variant="contained"
-          color='success'
+          color="success"
           sx={{ fontSize: "10px" }}
           onClick={() => navigate("/studentForm", { replace: true })}
         >

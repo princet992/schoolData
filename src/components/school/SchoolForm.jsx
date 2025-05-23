@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { addSchools } from "../../features/schoolSlice/schoolSlice";
 import { nanoid } from "@reduxjs/toolkit";
 
-
 const SchoolForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -39,8 +39,6 @@ const SignUp = () => {
         <h2 className="text-center text-xl font-semibold">SignUp Form</h2>
         <div className="my-2 grid">
           <label className="text-sm font-semibold">UserName</label>
-          <span>
-            {/* <PersonIcon /> */}
             <input
               type="text"
               {...register("name", {
@@ -50,7 +48,6 @@ const SignUp = () => {
                 theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
               } my-2  outline-[#a6dda6] w-full`}
             />
-          </span>
 
           {errors.name && <p>{errors.name.message}</p>}
         </div>
