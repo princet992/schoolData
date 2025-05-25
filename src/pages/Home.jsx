@@ -8,13 +8,17 @@ const Home = () => {
   return (
     <>
       <div
-        className={`flex justify-center items-center gap-5 py-10 px-4 flex-wrap ${
-          theme === "dark" && "bg-[#191a19] text-[#fff]"
+        className={`flex justify-center items-center gap-5 py-10 px-4 min-h-screen flex-wrap ${
+          theme === "dark" && "bg-[#191a19] text-[#fff] "
         }`}
       >
-        {schoolData?.map((school) => (
-          <SchoolDataCard school={school} key={school.id} />
-        ))}
+        {schoolData?.length ? (
+          schoolData?.map((school) => (
+            <SchoolDataCard school={school} key={school.id} />
+          ))
+        ) : (
+          <p>No school to display</p>
+        )}
       </div>
     </>
   );
