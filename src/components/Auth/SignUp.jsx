@@ -39,15 +39,15 @@ const SignUp = () => {
         <h2 className="text-center text-xl font-semibold">SignUp Form</h2>
         <div className="my-2 grid">
           <label className="text-sm font-semibold">UserName</label>
-            <input
-              type="text"
-              {...register("name", {
-                required: "Please enter user name",
-              })}
-              className={`px-3 py-2 rounded-lg ${
-                theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
-              } my-2  outline-[#a6dda6] w-full`}
-            />
+          <input
+            type="text"
+            {...register("name", {
+              required: "Please enter user name",
+            })}
+            className={`px-3 py-2 rounded-lg ${
+              theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
+            } my-2  outline-[#a6dda6] w-full`}
+          />
 
           {errors.name && <p>{errors.name.message}</p>}
         </div>
@@ -77,21 +77,23 @@ const SignUp = () => {
           />
           {errors.password && <p>{errors.password.message}</p>}
         </div>
-        {/* <div  className={`px-3 py-2 rounded-lg ${
-                theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
-              } my-2  outline-[#a6dda6] w-full`}>
-                    <label className="text-sm font-semibold">Role</label>
-                  <select 
-                   {...register("role", {
-                    required: "Please enter role type",
-                })}
-                   className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
-                  >
-                    <option value="admin">admin</option>
-                    <option value="student">student</option>
-                  </select>
-                    {errors.role && <p>{errors.role.message}</p>}
-                </div> */}
+        <div
+          className={`px-3 py-2 rounded-lg ${
+            theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
+          } my-2  outline-[#a6dda6] w-full`}
+        >
+          <label className="text-sm font-semibold">Role</label>
+          <select
+            {...register("role", {
+              required: "Please enter role type",
+            })}
+            className="px-3 py-2 rounded-lg bg-[#fff] outline-0 my-2"
+          >
+            <option value="admin">admin</option>
+            <option value="student">student</option>
+          </select>
+          {errors.role && <p>{errors.role.message}</p>}
+        </div>
         <button
           className={`px-3 py-2 rounded-lg w-full  text-white ${
             theme === "light" ? "bg-[#2db611]" : "bg-[#134718]"
