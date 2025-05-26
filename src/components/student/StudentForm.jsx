@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addStudent } from "../../features/schoolSlice/schoolSlice";
-
+import { schools } from "../../api/schoolApi";
 
 const StudentForm = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const StudentForm = () => {
     };
     dispatch(addStudent(newData));
     reset();
-    navigate("/formSuccess", {state:newData, replace: true });
+    navigate("/formSuccess", { state: newData, replace: true });
   };
 
   return (
@@ -121,7 +121,7 @@ const StudentForm = () => {
                 required: "Please enter school name",
               })}
             >
-              {schoolData?.map((school) => (
+              {schools?.map((school) => (
                 <option value={school.name} key={school.id}>
                   {school.name}
                 </option>
