@@ -1,12 +1,5 @@
 export const schools = [
-  {
-    name: "Doon International School | Sector 69, Mohali",
-    id:1
-  },
-  {
-    name: "Saint Soldier International Convent",
-    id:2
-  },
+ 
   {
     name: "Gurukul World School",
     id:3
@@ -14,5 +7,13 @@ export const schools = [
   {
     name: "Manav Rachna International School, Mohali",
     id:4
+  },
+  {
+    name: "Doon International School | Sector 69, Mohali",
+    id:1
+  },
+  {
+    name: "Saint Soldier International Convent",
+    id:2
   },
 ];

@@ -47,9 +47,9 @@ const NavBar = () => {
     }
   };
 
-  const handleThemes = () =>{
-    dispatch(toggleTheme())
-  }
+  const handleThemes = () => {
+    dispatch(toggleTheme());
+  };
 
   return (
     <>
@@ -122,13 +122,11 @@ const NavBar = () => {
                       </MenuItem>
                     </NavLink>
                   </div>
-                ) :
-                <NavLink to="/">
-                <MenuItem onClick={handleCloseNavMenu}>
-                 Home
-                </MenuItem>
-              </NavLink>
-                 }
+                ) : (
+                  <NavLink to="/">
+                    <MenuItem onClick={handleCloseNavMenu}>Home</MenuItem>
+                  </NavLink>
+                )}
               </Menu>
             </Box>
             <Typography
@@ -184,6 +182,16 @@ const NavBar = () => {
                 </>
               ) : (
                 <>
+                  <NavLink to="/home">
+                    <Button
+                      color="inherit"
+                      sx={{
+                        display: { xs: "none", sm: "inline", fontWeight: 600 },
+                      }}
+                    >
+                      Schools List
+                    </Button>
+                  </NavLink>
                   <NavLink to="/studentForm">
                     <Button
                       color="inherit"
@@ -195,59 +203,58 @@ const NavBar = () => {
                 </>
               )}
             </Box>
-           {
-            isAuthenticate &&
-            <Box sx={{ flexGrow: 0, marginInlineStart: "5px" }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                <AccountCircle
-                  sx={{
-                    outline: "1px solid green",
-                    borderRadius: "100%",
-                    backgroundColor: theme === "light" ? "#fff" : "#000",
-                    color: theme === "light" ? "#000" : "#fff",
+            {isAuthenticate && (
+              <Box sx={{ flexGrow: 0, marginInlineStart: "5px" }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                    <AccountCircle
+                      sx={{
+                        outline: "1px solid green",
+                        borderRadius: "100%",
+                        backgroundColor: theme === "light" ? "#fff" : "#000",
+                        color: theme === "light" ? "#000" : "#fff",
+                      }}
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
                   }}
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={() => handleCloseUserMenu(setting)}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
                 >
-                  {setting === "Logout" ? (
-                    <Typography sx={{ textAlign: "center" }}>
-                      Logout
-                    </Typography>
-                  ) : (
-                    <NavLink to={`/${setting}`}>
-                      <Typography sx={{ textAlign: "center" }}>
-                        {setting}
-                      </Typography>
-                    </NavLink>
-                  )}
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-           }
+                  {settings.map((setting) => (
+                    <MenuItem
+                      key={setting}
+                      onClick={() => handleCloseUserMenu(setting)}
+                    >
+                      {setting === "Logout" ? (
+                        <Typography sx={{ textAlign: "center" }}>
+                          Logout
+                        </Typography>
+                      ) : (
+                        <NavLink to={`/${setting}`}>
+                          <Typography sx={{ textAlign: "center" }}>
+                            {setting}
+                          </Typography>
+                        </NavLink>
+                      )}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            )}
             <Button
               onClick={handleThemes}
               className={`ms-3 ${
