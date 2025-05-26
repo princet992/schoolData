@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserAccess = () => {
   const { theme } = useSelector((state) => state.Themes);
@@ -14,6 +14,7 @@ const UserAccess = () => {
           theme === "dark" && "bg-[#191a19]"
         }`}
       >
+        <p className="text-[#ec2112]">Only admin can access this page</p>
         <img
           src="error.gif"
           alt="access-denied"
