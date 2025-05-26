@@ -72,7 +72,7 @@ const Login = () => {
                 theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
               } my-2  outline-[#a6dda6] w-full`}
             />
-            {errors.email && <p>{errors.email.message}</p>}
+            {errors.email && <p className="text-sm text-[#ee1b0c]">{errors.email.message}</p>}
           </div>
           <div className="my-2 grid">
             <label className="text-sm font-semibold">Password</label>
@@ -85,7 +85,7 @@ const Login = () => {
                 theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
               } my-2  outline-[#a6dda6] w-full`}
             />
-            {errors.password && <p>{errors.password.message}</p>}
+            {errors.password && <p className="text-sm text-[#ee1b0c]">{errors.password.message}</p>}
           </div>
           <button
             className={`px-3 py-2 rounded-lg w-full  text-white ${

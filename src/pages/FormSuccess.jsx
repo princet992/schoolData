@@ -14,7 +14,7 @@ const FormSuccess = () => {
         theme === "dark" && "bg-[#191a19] text-white"
       }`}
     >
-      {data && (
+      {data ? (
         <div>
           <h2 className="text-center text-xl py-5">Form Success</h2>
           <h2 className="  font-semibold py-5">
@@ -28,7 +28,7 @@ const FormSuccess = () => {
             Go Back
           </Button>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
