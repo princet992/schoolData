@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const SchoolSlice = createSlice({
   name: "school",
   initialState: {
-    schoolData: [],
+    schoolData: JSON.parse(localStorage.getItem("school")) || [],
     studentData: [],
   },
   reducers: {
@@ -35,6 +35,7 @@ const SchoolSlice = createSlice({
       } else {
         state.studentData.push(action.payload);
       }
+      localStorage.setItem("school", JSON.stringify(state.schoolData));
     },
     removeStudent: (state, action) => {
       state.studentData = state.studentData.filter(

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+// JSON.parse(localStorage.getItem(user))
 const AuthSlice = createSlice({
   name: "Auth",
   initialState: {
-    users: [],
+    users: JSON.parse(localStorage.getItem('user')) || [],
     userLogin: null,
     isAuthenticate: false,
   },
@@ -17,6 +17,7 @@ const AuthSlice = createSlice({
       } else {
         alert("User is already registered");
       }
+      localStorage.setItem('user',JSON.stringify(stateusers))
     },
     removeUser: (state, action) => {
       state.users = state.users.filter((user) => user.id !== action.payload.id);
