@@ -49,7 +49,7 @@ const SignUp = () => {
             } my-2  outline-[#a6dda6] w-full`}
           />
 
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && <p className="text-sm text-[#ee1b0c]">{errors.name.message}</p>}
         </div>
         <div className="my-2 grid">
           <label className="text-sm font-semibold">Email</label>
@@ -62,7 +62,7 @@ const SignUp = () => {
               theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
             } my-2  outline-[#a6dda6] w-full`}
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className="text-sm text-[#ee1b0c]">{errors.email.message}</p>}
         </div>
         <div className="my-2 grid">
           <label className="text-sm font-semibold">Password</label>
@@ -75,9 +75,9 @@ const SignUp = () => {
               theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
             } my-2  outline-[#a6dda6] w-full`}
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && <p className="text-sm text-[#ee1b0c]">{errors.password.message}</p>}
         </div>
-        <div
+        {/* <div
           className={`px-3 py-2 rounded-lg ${
             theme === "light" ? "bg-[#fff]" : "bg-[#3b3737] "
           } my-2  outline-[#a6dda6] w-full`}
@@ -93,7 +93,7 @@ const SignUp = () => {
             <option value="student">student</option>
           </select>
           {errors.role && <p>{errors.role.message}</p>}
-        </div>
+        </div> */}
         <button
           className={`px-3 py-2 rounded-lg w-full  text-white ${
             theme === "light" ? "bg-[#2db611]" : "bg-[#134718]"
